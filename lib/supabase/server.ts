@@ -46,7 +46,7 @@ export function createSupabaseServerClient() {
  * server-only code (API routes / server actions), NEVER in a file that can
  * be bundled for the client. The service role key bypasses RLS.
  */
-export function createSupabaseAdminClient() {
+export async function createSupabaseAdminClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
@@ -56,9 +56,9 @@ export function createSupabaseAdminClient() {
     );
   }
 
-  // Lazily import to avoid bundling in client code paths.
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { createClient } = require('@supabase/supabase-js');
+  // Dynamically imported so this code path is never pulled into a bundle
+  // that could reach the client.
+  const { createClient } = await import('@supabase/supabase-js');
   return createClient(url, serviceRoleKey, {
     auth: { autoRefreshToken: false, persistSession: false },
   });

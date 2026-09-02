@@ -1,33 +1,55 @@
-# prod
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+build/
 dist/
 
-# dev
-.yarn/
-!.yarn/releases
-.vscode/*
-!.vscode/launch.json
-!.vscode/*.code-snippets
-.idea/workspace.xml
-.idea/usage.statistics.xml
-.idea/shelf
+# Production
+*.tsbuildinfo
+next-env.d.ts
 
-# deps
-node_modules/
-.wrangler
-
-# env
+# Env files - NEVER commit secrets
 .env
-.env.production
-.dev.vars
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# logs
+# Vercel
+.vercel
+
+# Supabase local
+supabase/.branches
+supabase/.temp
+
+# Logs
 logs/
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-# misc
+# PM2
+.pm2/
+pids/
+ecosystem.config.cjs
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+
+# Misc
+*.tar.gz
+*.zip
+*.bak
